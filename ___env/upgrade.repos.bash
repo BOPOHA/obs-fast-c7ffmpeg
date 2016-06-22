@@ -28,7 +28,7 @@ for PRJ in centos6 centos7; do
   for REPO in os updates epel; do
     for ARCH in x86_64 i586; do
       REPO_PATH="/srv/obs/build/$PRJ/$REPO/$ARCH/:full" ;
-      mkdir -p $REPO_PATH ; rm -rf $REPO_PATH/* ;
+      mkdir -p $REPO_PATH ; find  $REPO_PATH/ -type l -delete ;
       find /home/repos/$PRJ/$REPO/$ARCH -name "*.rpm" -exec ln -s {} $REPO_PATH/ \;
     done
   done
