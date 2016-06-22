@@ -1,0 +1,7 @@
+[general]
+apiurl = https://linux
+
+[https://linux]
+user = Admin
+pass = opensuse
+
