@@ -3,7 +3,6 @@ DISABLEc6x64=True
 DISABLEc6x32=True
 DISABLEc7x64=False
 
-rcobsscheduler shutdown
 mkdir -p /home/repos/{centos6,centos7}/{os,updates,epel}/{x86_64,i586}
 
 if [ "$DISABLEc6x64" = "False" ]; then
@@ -24,6 +23,8 @@ if [ "$DISABLEc7x64" = "False" ]; then
     cd       /home/repos/centos7/epel/x86_64/     && rsync --progress  -av --delete --exclude debug/ --exclude "*debuginfo*" rsync://mirror.pnl.gov/epel/7/x86_64/ .
 fi
 
+rcobsscheduler shutdown
+
 for PRJ in centos6 centos7; do
   for REPO in os updates epel; do
     for ARCH in x86_64 i586; do
@@ -33,7 +34,6 @@ for PRJ in centos6 centos7; do
     done
   done
 done
-
 
 chown -R obsrun.obsrun  /home/repos /srv/obs/build
 rcobsscheduler start
